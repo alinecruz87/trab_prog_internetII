@@ -8,14 +8,13 @@ class DiaristaController {
     public function listar($request, $response, $args){
         $dao= new DiaristaDAO;    
         $diaristas = $dao->listarDiarista();
-    
         return $response->withJSON($diaristas);
     
     }
 
     public function inserir($request, $response, $args) {
         $data = $request->getParsedBody();
-        $diarista = new Diarista(0,$data['nome'],$data['endereco'],$data['telefone'],$data['qte_pessoas'],$data['ponto_ref'],$data['cpf']);
+        $diarista = new Diarista(0,$data['nome'],$data['endereco']);
     
         $dao = new DiaristaDao;
         $diarista = $dao->inserirDiarista($diarista);
@@ -35,7 +34,7 @@ class DiaristaController {
     public function atualizar($request, $response, $args) {
         $id = $args['id'];
         $data = $request->getParsedBody();
-        $diarista = new Diarista($id, $data['nome'],$data['endereco'],$data['telefone'],$data['qte_pessoas'],$data['ponto_ref'],$data['cpf']);
+        $diarista = new Diarista($id, $data['nome'],$data['endereco']);
     
         $dao = new DiaristaDao;
         $diarista = $dao->atualizarDiarista($diarista);
